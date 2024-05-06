@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Image Resizer</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&amp;family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        display: block;
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .title {
+        font-family: 'Poppins', sans-serif;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .paragraph {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .steps-text {
+    	text-align: left;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .upload-label {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .upload-label:hover {
+        background-color: #45a049;
+    }
+
+    .resize-options {
+        margin-top: 20px;
+    }
+
+    .input-number {
+        width: 80px;
+        padding: 8px;
+        margin: 0 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    .resize-button {
+        background-color: #008CBA;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: block;
+        margin: 20px auto 0;
+    }
+
+    .resize-button:hover {
+        background-color: #005A85;
+    }
+
+    .resized-image {
+        margin-top: 20px;
+    }
+
+    .image-preview {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .download-link {
+        display: block;
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .download-link:hover {
+        background-color: #45a049;
+    }
+
+    .image-info {
+        color: #777;
+        margin-top: 10px;
+    }
+
+    .info-label {
+        font-weight: bold;
+    }
+
+    .info-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+</style>
+<meta name="description" content="Resize and reduce the size of your images online for free. Our image reducer and resizer tool helps optimize images for better web performance.">
+<meta name="keywords" content="image reducer, image resizer, resize image, reduce image size, optimize image">
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">Resize and Reduce Image Size</h2>
+        <p class="paragraph">Need to optimize your images for web performance? Use our free image reducer and resizer tool! Simply upload your image, specify the desired width or height (or both), adjust the compression level if needed, and click the resize button. Our tool will efficiently resize and compress your images while maintaining quality.</p>
+        <label for="image-upload" class="upload-label">Upload Image</label>
+        <input type="file" id="image-upload" accept="image/*">
+        <p id="file-name"></p>
+        <div id="image-preview" class="image-preview"></div>
+        <div id="info-container" class="info-container">
+            <div id="original-size" class="image-info"></div>
+            <div id="original-dimensions" class="image-info"></div>
+        </div>
+        <div class="resize-options">
+            <label for="width">Width:</label>
+            <input type="number" id="width" class="input-number" min="1" placeholder="Width">
+            <label for="height">Height:</label>
+            <input type="number" id="height" class="input-number" min="1" placeholder="Height">
+            <label for="compression">Compression:</label>
+            <input type="number" id="compression" class="input-number" min="1" max="100" placeholder="Compression %" value="80">
+            <button id="resize-btn" class="resize-button">Resize</button>
+        </div>
+        <div id="resized-image" class="resized-image"></div>
+        <div id="resized-info-container" class="info-container">
+            <div id="resized-size" class="image-info"></div>
+            <div id="resized-dimensions" class="image-info"></div>
+        </div>
+        <h3 class="title steps-text">How to Reduce Image Size in KB:</h3>
+        <p class="paragraph steps-text">To reduce the size of your image in kilobytes (KB), follow these steps:</p>
+        <ul class="paragraph steps-text">
+            <li>Select the image you want to resize by clicking on the "Upload Image" button.</li>
+            <li>Once the image is uploaded, specify the desired width and height in pixels.</li>
+            <li>Adjust the compression level using the provided slider. Higher compression results in smaller file size but may reduce image quality.</li>
+            <li>Click on the "Resize" button to process the image.</li>
+            <li>After processing, the resized image will be displayed below with its new size and dimensions.</li>
+            <li>You can download the resized image by clicking on the "Download" button.</li>
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#image-upload").change(function(){
+                var files = $(this)[0].files;
+                if (files.length > 0) {
+                    var filenames = "";
+                    for (var i = 0; i < files.length; i++) {
+                        filenames += files[i].name + ", ";
+                    }
+                    $("#file-name").text("Files Selected: " + filenames.slice(0, -2));
+                    var imagePreview = "";
+                    for (var i = 0; i < files.length; i++) {
+                        var img = new Image();
+                        img.src = URL.createObjectURL(files[i]);
+                        img.onload = function() {
+                            imagePreview += '<img src="' + this.src + '" alt="Uploaded Image" class="image-preview">';
+                            $("#image-preview").html(imagePreview);
+                            var originalSizeString = "Size: " + (files[0].size / (1024 * 1024)).toFixed(2) + " MB";
+                            var originalDimensionsString = "Dimensions: " + this.width + "x" + this.height;
+                            $("#original-size").text(originalSizeString);
+                            $("#original-dimensions").text(originalDimensionsString);
+                        };
+                    }
+                }
+            });
+
+            $("#resize-btn").click(function(){
+                var files = $("#image-upload")[0].files;
+                var compression = parseInt($("#compression").val());
+                if (files.length > 0) {
+                    for (var i = 0; i < files.length; i++) {
+                        var reader = new FileReader();
+                        reader.readAsDataURL(files[i]);
+                        reader.onload = function(e) {
+                            var img = new Image();
+                            img.src = e.target.result;
+                            img.onload = function() {
+                                var canvas = document.createElement("canvas");
+                                var ctx = canvas.getContext("2d");
+                                var compressionQuality = compression / 100;
+                                canvas.width = img.width;
+                                canvas.height = img.height;
+                                ctx.drawImage(img, 0, 0);
+                                var resizedImage = canvas.toDataURL("image/jpeg", compressionQuality);
+                                $("#resized-image").append('<img src="' + resizedImage + '" alt="Resized Image" class="image-preview">');
+                                var resizedSizeString = "Size: " + (resizedImage.length / (1024 * 1024)).toFixed(2) + " MB";
+                                var resizedDimensionsString = "Dimensions: " + img.width + "x" + img.height;
+                                $("#resized-size").text(resizedSizeString);
+                                $("#resized-dimensions").text(resizedDimensionsString);
+                                var downloadLink = $("<a/>", {
+                                    class: "download-link",
+                                    download: "resized_image_" + i + ".jpg",
+                                    href: resizedImage,
+                                    text: "Download"
+                                });
+                                $("#resized-image").append(downloadLink);
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
