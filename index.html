@@ -1,136 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom Image Resizer</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&amp;family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet">
-<style>
-    body {
-        font-family: 'Montserrat', sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        max-width: 800px;
-        padding: 20px;
-        display: block;
-        margin: 0 auto;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-
-    .title {
-        font-family: 'Poppins', sans-serif;
-        color: #333;
-        margin-bottom: 20px;
-    }
-
-    .paragraph {
-        color: #333;
-        margin-bottom: 20px;
-    }
-
-    .steps-text {
-    	text-align: left;
-    }
-
-    input[type="file"] {
-        display: none;
-    }
-
-    .upload-label {
-        background-color: #4CAF50;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .upload-label:hover {
-        background-color: #45a049;
-    }
-
-    .resize-options {
-        margin-top: 20px;
-    }
-
-    .input-number {
-        width: 80px;
-        padding: 8px;
-        margin: 0 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
-
-    .resize-button {
-        background-color: #008CBA;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        display: block;
-        margin: 20px auto 0;
-    }
-
-    .resize-button:hover {
-        background-color: #005A85;
-    }
-
-    .resized-image {
-        margin-top: 20px;
-    }
-
-    .image-preview {
-        max-width: 100%;
-        height: auto;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-
-    .download-link {
-        display: block;
-        background-color: #4CAF50;
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-    }
-
-    .download-link:hover {
-        background-color: #45a049;
-    }
-
-    .image-info {
-        color: #777;
-        margin-top: 10px;
-    }
-
-    .info-label {
-        font-weight: bold;
-    }
-
-    .info-container {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-</style>
-<meta name="description" content="Resize and reduce the size of your images online for free. Our image reducer and resizer tool helps optimize images for better web performance.">
-<meta name="keywords" content="image reducer, image resizer, resize image, reduce image size, optimize image">
+    <title>Saga Image Reducer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resize and reduce the size of your images online for free. Our image reducer and resizer tool helps optimize images for better web performance.">
+    <meta name="keywords" content="image reducer, image resizer, resize image, reduce image size, optimize image">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&amp;family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <img src="img/logo.png" alt="Logo" class="logo" id="logo">
+        <nav class="nav" id="nav">
+            <ul class="menu" id="menu">
+                <li><a href="/" class="menu-item">Home</a></li>
+                <li><a href="about-us.html" class="menu-item">About Us</a></li>
+                <li><a href="disclaimer.html" class="menu-item">Disclaimer</a></li>
+                <li><a href="privacy-policy.html" class="menu-item">Privacy Policy</a></li>
+                <li><a href="terms-and-conditions.html" class="menu-item">Terms & Conditions</a></li>
+                <li><a href="contact-us.html" class="menu-item">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+
+    <!-- Tool -->
     <div class="container">
-        <h2 class="title">Resize and Reduce Image Size</h2>
+        <h1 class="title">Resize and Reduce Image Size</h1>
         <p class="paragraph">Need to optimize your images for web performance? Use our free image reducer and resizer tool! Simply upload your image, specify the desired width or height (or both), adjust the compression level if needed, and click the resize button. Our tool will efficiently resize and compress your images while maintaining quality.</p>
         <label for="image-upload" class="upload-label">Upload Image</label>
         <input type="file" id="image-upload" accept="image/*">
@@ -164,10 +66,37 @@
             <li>After processing, the resized image will be displayed below with its new size and dimensions.</li>
             <li>You can download the resized image by clicking on the "Download" button.</li>
         </ul>
+        <h3 class="title steps-text">Effective Ways to Reduce Image Size in Kilobytes (KB):</h3>
+        <p class="paragraph steps-text">In today's digital world, optimizing images for web usage is crucial to ensure faster load times and better user experience. Here are some effective techniques to reduce image size specifically in kilobytes (KB):</p>
+        <ul class="paragraph steps-text">
+            <li><strong>Choose the right file format:</strong> Certain image formats like JPEG and PNG offer better compression without significant loss of quality. Experiment with different formats to find the best balance between size and quality.</li>
+            <li><strong>Resize images:</strong> Scale down images to fit the dimensions required for your website. Avoid using larger images and scaling them down using HTML or CSS, as it increases file size without benefiting quality.</li>
+            <li><strong>Optimize compression:</strong> Use image compression tools or software to further reduce file size while maintaining acceptable quality. Adjust compression settings based on your specific needs and preferences.</li>
+            <li><strong>Remove unnecessary metadata:</strong> Strip metadata or EXIF data from images, which often contain additional information not required for web display. This can significantly reduce file size without impacting visual quality.</li>
+            <li><strong>Use CSS sprites:</strong> Combine multiple small images into a single sprite sheet using CSS. This reduces the number of server requests and can improve page loading times.</li>
+        </ul>
+        <p>By implementing these strategies, you can effectively reduce image size in kilobytes (KB) and enhance the performance of your website.</p>
+    </div>
+
+    <!-- Footer -->
+
+    <div class="footer">
+        <p>Copyright © 2024 Company Name. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-and-conditions.html">Terms of Service</a></p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        // Header Mobile Menu Code
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const nav = document.getElementById('nav');
+
+            hamburgerMenu.addEventListener('click', function() {
+                nav.classList.toggle('show-menu');
+            });
+        });
+
+        // Tools Code
         $(document).ready(function(){
             $("#image-upload").change(function(){
                 var files = $(this)[0].files;
