@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact Us | Saga Image Reducer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="resize image, reduce image size, image resizing, image optimization, image resizer, image reducer">
+    <meta name="description" content="Contact us for any inquiries or assistance related to resizing and reducing image sizes. Our team is here to help you optimize your images for better web performance. Reach out to us today!">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&amp;family=Montserrat:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <img src="img/logo.png" alt="Logo" class="logo" id="logo">
+        <nav class="nav" id="nav">
+            <ul class="menu" id="menu">
+                <li><a href="/" class="menu-item">Home</a></li>
+                <li><a href="about-us.html" class="menu-item">About Us</a></li>
+                <li><a href="disclaimer.html" class="menu-item">Disclaimer</a></li>
+                <li><a href="privacy-policy.html" class="menu-item">Privacy Policy</a></li>
+                <li><a href="terms-and-conditions.html" class="menu-item">Terms & Conditions</a></li>
+                <li><a href="contact-us.html" class="menu-item">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feedback, or require assistance regarding resizing and reducing image sizes, feel free to get in touch with us. Our dedicated team is committed to helping you optimize your images for improved web performance. Whether you need guidance on image compression techniques or have specific requirements for resizing images, we're here to assist you every step of the way. Contact us today to learn more about how we can help you resize and reduce image sizes effectively.</p>
+        <form id="contactForm">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+
+    <div class="footer">
+        <p>Copyright © 2024 Company Name. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-and-conditions.html">Terms of Service</a></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#contactForm").submit(function(event){
+                event.preventDefault(); // Prevent default form submission
+
+                var name = $("#name").val().trim();
+                var email = $("#email").val().trim();
+                var message = $("#message").val().trim();
+
+                if (name === "" || email === "" || message === "") {
+                    alert("Please fill in all fields.");
+                    return false;
+                }
+
+                if (!isValidEmail(email)) {
+                    alert("Please enter a valid email address.");
+                    return false;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "send_email.php",
+                    data: { name: name, email: email, message: message },
+                    success: function(response) {
+                        alert(response);
+                        $("#contactForm")[0].reset(); // Reset form after successful submission
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Error: Unable to send email.");
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+
+            function isValidEmail(email) {
+                var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return pattern.test(email);
+            }
+        });
+    </script>
+</body>
+</html>
