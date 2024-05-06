@@ -1,0 +1,284 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/body-bg.jpg');
+}
+
+.container {
+    max-width: 800px;
+    padding: 20px;
+    display: block;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.title {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.paragraph {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Header Code */
+.header {
+    width: 100%;
+    background-color: #333;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    max-width: 150px;
+    height: auto;
+    margin-left: 20px;
+}
+
+.nav {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.menu li {
+    margin: 0 10px;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px 0;
+}
+
+
+
+/* Tool Code  */
+
+.steps-text {
+	text-align: left;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-label {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-label:hover {
+    background-color: #45a049;
+}
+
+.resize-options {
+    margin-top: 20px;
+}
+
+.input-number {
+    width: 80px;
+    padding: 8px;
+    margin: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.resize-button {
+    background-color: #008CBA;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.resize-button:hover {
+    background-color: #005A85;
+}
+
+.resized-image {
+    margin-top: 20px;
+}
+
+.image-preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.download-link {
+    display: block;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.download-link:hover {
+    background-color: #45a049;
+}
+
+.image-info {
+    color: #777;
+    margin-top: 10px;
+}
+
+.info-label {
+    font-weight: bold;
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Footer Code */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Contact Us */
+form {
+    text-align: left;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 150px;
+}
+
+button[type="submit"] {
+    background-color: #008CBA;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #005A85;
+}
+
+/* Privacy Policy */
+.Privacy_Policy .container {
+    text-align: left;
+}
+
+.Privacy_Policy h2 {
+    text-align: center;
+}
+
+
+/* Header Mobile Responsive Styles */
+@media only screen and (max-width: 600px) {
+    .container {
+        margin: 30px auto;
+    }
+
+    .logo {
+        max-width: 100px;
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 80px;
+        left: 0;
+    }
+
+    .nav.show-menu {
+        display: flex;
+    }
+
+    .menu {
+        flex-direction: column;
+        padding: 20px;
+        width: 100%;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+}
